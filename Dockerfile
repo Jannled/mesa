@@ -1,7 +1,7 @@
 # We can't use slim because we need either git/wget/curl to
 # download mesa-examples, and so installing them requires
 # updating the system anyway.
-FROM python:bookworm
+FROM python:3.13-alpine
 LABEL maintainer="projectmesa maintainers@projectmesa.dev"
 
 # To use this Dockerfile:
