@@ -29,6 +29,7 @@ COPY . /opt/mesa
 
 EXPOSE 8765/tcp
 
+RUN apk add --no-cache gcc musl-dev linux-headers
 RUN pip3 install -e /opt/mesa[rec]
 
 CMD ["sh", "-c", "cd $MODEL_DIR && solara run app.py --host=0.0.0.0"]
