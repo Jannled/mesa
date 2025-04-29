@@ -1,0 +1,2 @@
+svgpath2mpl
+svgpathtools
