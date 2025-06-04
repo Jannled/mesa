@@ -53,13 +53,12 @@ class Agent:
 
         Args:
             model (Model): The model instance in which the agent exists.
-            args: passed on to super
-            kwargs: passed on to super
+            args: Passed on to super.
+            kwargs: Passed on to super.
 
         Notes:
             to make proper use of python's super, in each class remove the arguments and
             keyword arguments you need and pass on the rest to super
-
         """
         super().__init__(*args, **kwargs)
 
@@ -103,7 +102,10 @@ class Agent:
         """
 
         class ListLike:
-            """Helper class to make default arguments act as if they are in a list of length N."""
+            """Make default arguments act as if they are in a list of length N.
+
+            This is a helper class.
+            """
 
             def __init__(self, value):
                 self.value = value
@@ -183,7 +185,7 @@ class AgentSet(MutableSet, Sequence):
                 Random()
             )  # FIXME see issue 1981, how to get the central rng from model
         self.random = random
-        self._agents = weakref.WeakKeyDictionary({agent: None for agent in agents})
+        self._agents = weakref.WeakKeyDictionary(dict.fromkeys(agents))
 
     def __len__(self) -> int:
         """Return the number of agents in the AgentSet."""
@@ -262,7 +264,7 @@ class AgentSet(MutableSet, Sequence):
         self.random.shuffle(weakrefs)
 
         if inplace:
-            self._agents.data = {entry: None for entry in weakrefs}
+            self._agents.data = dict.fromkeys(weakrefs)
             return self
         else:
             return AgentSet(
@@ -301,7 +303,7 @@ class AgentSet(MutableSet, Sequence):
 
         This is a private method primarily used internally by other methods like select, shuffle, and sort.
         """
-        self._agents = weakref.WeakKeyDictionary({agent: None for agent in agents})
+        self._agents = weakref.WeakKeyDictionary(dict.fromkeys(agents))
         return self
 
     def do(self, method: str | Callable, *args, **kwargs) -> AgentSet:
