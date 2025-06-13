@@ -186,6 +186,7 @@ def SolaraViz(
             )
         with solara.Card("Information"):
             ShowSteps(model.value)
+            ShowResources(model.value)
         if (
             CommandConsole in components
         ):  # If command console in components show it in sidebar
@@ -713,3 +714,7 @@ def ShowSteps(model):
     """Display the current step of the model."""
     update_counter.get()
     return solara.Text(f"Step: {model.steps}")
+
+@solara.component
+def ShowResources(model):
+    return solara.Text(f"Resources Collected: {model.collected_resources}/{model.max_resources}")
