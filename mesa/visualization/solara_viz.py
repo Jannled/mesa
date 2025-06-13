@@ -719,4 +719,4 @@ def ShowSteps(model):
 @solara.component
 def ShowResources(model):
     update_counter.get()
-    return solara.Text(f"\nResources Collected: {model.collected_resources}/{model.max_resources}")
+    return solara.Text(f"Resources Collected: {model.collected_resources}/{model.max_resources}")
