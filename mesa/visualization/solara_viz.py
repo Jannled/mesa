@@ -185,7 +185,10 @@ def SolaraViz(
                 model, model_params, model_parameters=reactive_model_parameters
             )
         with solara.Card("Information"):
-            ShowSteps(model.value)
+            with solara.Column(gap="1rem"):  # or "16px", "8px", etc.
+                ShowSteps(model.value)
+                ShowResources(model.value)
+                ShowDeadRovers(model.value)
         if (
             CommandConsole in components
         ):  # If command console in components show it in sidebar
@@ -713,3 +716,12 @@ def ShowSteps(model):
     """Display the current step of the model."""
     update_counter.get()
     return solara.Text(f"Step: {model.steps}")
+
+@solara.component
+def ShowResources(model):
+    update_counter.get()
+    return solara.Text(f"Resources Collected: {model.collected_resources}/{model.max_resources}")
+
+@solara.component
+def ShowDeadRovers(model):
+    return solara.Text(f"Dead Rovers: {model.dead_rovers}")
