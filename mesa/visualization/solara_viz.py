@@ -725,4 +725,4 @@ def ShowResources(model):
 @solara.component
 def ShowDeadRovers(model):
     update_counter.get()
-    return solara.Text(f"Dead Rovers: {model.dead_rovers}")
+    return solara.Text(f"Dead Rovers: {model.dead_rovers}/{model.population_size}")
